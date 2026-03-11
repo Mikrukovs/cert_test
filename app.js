@@ -183,24 +183,24 @@ function removeCard() {
   }, Math.round(160 * v));
 }
 
-/* ── haptic ─────────────────────────────────── */
+/* ── haptic (checkbox switch trick for iOS) ── */
 
-const hapticPlus  = document.getElementById('haptic-plus');
-const hapticMinus = document.getElementById('haptic-minus');
+const hapticCheckbox = document.createElement('input');
+hapticCheckbox.type = 'checkbox';
+hapticCheckbox.setAttribute('switch', '');
+hapticCheckbox.style.cssText = 'position:fixed;top:-100px;left:-100px;opacity:0;pointer-events:none;';
+const hapticLabel = document.createElement('label');
+hapticLabel.appendChild(hapticCheckbox);
+hapticLabel.style.cssText = 'position:fixed;top:-100px;left:-100px;';
+document.body.appendChild(hapticLabel);
 
-function resetHaptic(cb) {
-  return () => {
-    cb();
-    setTimeout(() => {
-      hapticPlus.checked  = false;
-      hapticMinus.checked = false;
-    }, 50);
-  };
+function hapticTick() {
+  hapticLabel.click();
 }
 
 /* ── bind ──────────────────────────────────── */
 
-btnPlus.addEventListener('click', resetHaptic(addCard));
-btnMinus.addEventListener('click', resetHaptic(removeCard));
+btnPlus.addEventListener('click', () => { hapticTick(); addCard(); });
+btnMinus.addEventListener('click', () => { hapticTick(); removeCard(); });
 
 build();

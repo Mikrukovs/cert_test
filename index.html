@@ -10,20 +10,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <input type="checkbox" class="haptic-checkbox" id="haptic-plus" aria-hidden="true" tabindex="-1">
-  <input type="checkbox" class="haptic-checkbox" id="haptic-minus" aria-hidden="true" tabindex="-1">
-
   <div class="screen">
     <div class="card-stack" id="cardStack"></div>
 
     <div class="counter">
-      <label for="haptic-minus" class="counter-btn counter-btn--minus" id="btnMinus">
-        <span>–</span>
-      </label>
+      <button class="counter-btn counter-btn--minus" id="btnMinus">–</button>
       <div class="counter-value" id="counterValue">1</div>
-      <label for="haptic-plus" class="counter-btn counter-btn--plus" id="btnPlus">
-        <span>+</span>
-      </label>
+      <button class="counter-btn counter-btn--plus" id="btnPlus">+</button>
     </div>
   </div>
 
