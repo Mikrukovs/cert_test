@@ -183,9 +183,24 @@ function removeCard() {
   }, Math.round(160 * v));
 }
 
+/* ── haptic ─────────────────────────────────── */
+
+const hapticPlus  = document.getElementById('haptic-plus');
+const hapticMinus = document.getElementById('haptic-minus');
+
+function resetHaptic(cb) {
+  return () => {
+    cb();
+    setTimeout(() => {
+      hapticPlus.checked  = false;
+      hapticMinus.checked = false;
+    }, 50);
+  };
+}
+
 /* ── bind ──────────────────────────────────── */
 
-btnPlus.addEventListener('click', addCard);
-btnMinus.addEventListener('click', removeCard);
+btnPlus.addEventListener('click', resetHaptic(addCard));
+btnMinus.addEventListener('click', resetHaptic(removeCard));
 
 build();

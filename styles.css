@@ -195,12 +195,14 @@ body {
 
 .haptic-checkbox {
   position: fixed;
-  top: -9999px;
-  left: -9999px;
-  opacity: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0.01;
   pointer-events: none;
-  width: 0;
-  height: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* ── Responsive ─────────────────────────────── */
