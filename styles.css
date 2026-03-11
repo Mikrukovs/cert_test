@@ -16,6 +16,7 @@ body {
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
+  touch-action: manipulation;
 }
 
 .screen {
@@ -201,5 +202,5 @@ body {
     height: 100dvh;
   }
   .card-stack { top: 31%; }
-  .counter   { top: 57%; }
+  .counter   { top: auto; bottom: 80px; }
 }
