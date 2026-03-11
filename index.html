@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Card Stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <input type="checkbox" class="haptic-checkbox" id="haptic-plus" aria-hidden="true" tabindex="-1">
+  <input type="checkbox" class="haptic-checkbox" id="haptic-minus" aria-hidden="true" tabindex="-1">
+
+  <div class="screen">
+    <div class="card-stack" id="cardStack"></div>
+
+    <div class="counter">
+      <label for="haptic-minus" class="counter-btn counter-btn--minus" id="btnMinus">
+        <span>–</span>
+      </label>
+      <div class="counter-value" id="counterValue">1</div>
+      <label for="haptic-plus" class="counter-btn counter-btn--plus" id="btnPlus">
+        <span>+</span>
+      </label>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

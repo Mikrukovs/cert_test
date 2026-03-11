@@ -1,0 +1,215 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.screen {
+  width: 393px;
+  height: 852px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Card Stack ─────────────────────────────── */
+
+.card-stack {
+  position: absolute;
+  left: 50%;
+  top: 265px;
+  transform: translateX(-50%);
+  width: 285px;
+  height: 220px;
+}
+
+.card {
+  position: absolute;
+  border-radius: 17px;
+  overflow: hidden;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  transition:
+    width    0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    height   0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    left     0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    top      0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    z-index  0s;
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 10% 100%, rgba(162, 155, 252, 0.7) 0%, transparent 60%),
+    radial-gradient(ellipse at 35% 83%, rgba(177, 235, 247, 0.6) 0%, transparent 55%),
+    radial-gradient(ellipse at 62% 64%, rgba(247, 177, 197, 0.5) 0%, transparent 50%),
+    linear-gradient(90deg, #f1f1fd, #f1f1fd);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-amount {
+  position: absolute;
+  right: 15px;
+  top: 17px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  transition: font-size 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-logo {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  overflow: hidden;
+  transition:
+    width  0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Animations ─────────────────────────────── */
+
+/* + : new card lands on top */
+@keyframes drop {
+  0%   { opacity: 0; transform: translateY(-32px) scale(1); }
+  50%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* – : top card lifts away (reverse drop) */
+@keyframes lift {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  70%  { opacity: 1; transform: translateY(-6px) scale(1); }
+  100% { opacity: 0; transform: translateY(-32px) scale(1); }
+}
+
+/* overflow +: bottom card dissolves into depth */
+@keyframes sink {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(16px) scale(0.5); }
+}
+
+/* overflow –: new bottom card materialises from depth */
+@keyframes emerge {
+  0%   { opacity: 0; transform: translateY(16px) scale(0.5); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* subtle bounce after drop/lift lands */
+@keyframes impact {
+  0%   { transform: translateY(0) scale(1); }
+  40%  { transform: translateY(-7px) scale(1.01); }
+  70%  { transform: translateY(1px) scale(0.998); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.card--drop    { animation: drop    0.5s  cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.card--lift    { animation: lift    0.42s cubic-bezier(0.55, 0, 1, 0.45) forwards; pointer-events: none; }
+.card--sink    { animation: sink    0.3s  cubic-bezier(0.4, 0, 1, 1) forwards; pointer-events: none; }
+.card--emerge  { animation: emerge  0.4s  cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.card--impact  { animation: impact  0.5s  cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+/* ── Counter ────────────────────────────────── */
+
+.counter {
+  position: absolute;
+  left: 50%;
+  top: 487px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background: #edeff2;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 47px;
+  width: 163px;
+}
+
+.counter-btn {
+  width: 36px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  transition: background 0.15s ease;
+}
+
+.counter-btn:active {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.counter-btn--minus { border-right: 2px solid #d5d5d5; }
+.counter-btn--plus  { border-left:  2px solid #d5d5d5; }
+
+.counter-value {
+  flex: 1;
+  text-align: center;
+  font-size: 24px;
+  color: #000;
+  font-weight: 400;
+  line-height: 47px;
+}
+
+/* ── Haptic ─────────────────────────────────── */
+
+.haptic-checkbox {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+/* ── Responsive ─────────────────────────────── */
+
+@media (max-width: 420px) {
+  .screen {
+    width: 100vw;
+    height: 100dvh;
+  }
+  .card-stack { top: 31%; }
+  .counter   { top: 57%; }
+}
